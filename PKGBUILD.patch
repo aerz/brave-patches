@@ -1,0 +1,30 @@
+--- /dev/null
++++ ./PKGBUILD
+@@ -53,7 +53,8 @@
+         'brave-browser.desktop'
+         "chromium-launcher-$_launcher_ver.tar.gz::https://github.com/foutrelis/chromium-launcher/archive/v$_launcher_ver.tar.gz"
+         "https://github.com/stha09/chromium-patches/releases/download/${patchset_name}/${patchset_name}.tar.xz"
+-        "chromium-no-history.patch")
++        "chromium-no-history.patch"
++        "gtk-dark-mode-switch-fix.patch")
+ arch_revision=8d3870e027300e243471b1e508f31d16ce45553a
+ Patches="
+         add-clang-nomerge-attribute-to-CheckError.patch
+@@ -75,6 +76,7 @@
+             '86859c11cfc8ba106a3826479c0bc759324a62150b271dd35d1a0f96e890f52f'
+             '3eb9580ea35a96789e02815270498226fa33726f4210a5ee36f3868af2ffae1f'
+             'ea3446500d22904493f41be69e54557e984a809213df56f3cdf63178d2afb49e'
++            'e75632e8795491f01b4ceb825c25751b762a8b030a4353442a35480ba072e6ae'
+             '5e22afcb91b5402bc09e80630c5323d61013c3fccb0bbd9b23d1e79a400b00d0'
+             '2fccecdcd4509d4c36af873988ca9dbcba7fdb95122894a9fdf502c33a1d7a4b'
+             'e393174d7695d0bafed69e868c5fbfecf07aa6969f3b64596d0bae8b067e1711')
+@@ -168,6 +170,9 @@
+   # https://crbug.com/1164975
+   patch -Np1 -i ../../chromium-glibc-2.33.patch
+
++  # Apply gtk dark mode switch patch
++  patch -Np1 -i ../../gtk-dark-mode-switch-fix.patch
++
+   # Revert addition of [[clang::nomerge]] attribute; not supported by clang 11
+   patch -Rp1 -d base <../../add-clang-nomerge-attribute-to-CheckError.patch
+
