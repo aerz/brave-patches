@@ -19,19 +19,25 @@ By using [paru](https://github.com/Morganamilo/paru), it will apply the patches 
 
 ## Use as Pacman third party repository
 
-Add these lines at the end of the `/etc/pacman.conf`.
+Import my personal PGP key:
+
+```sh
+pacman-key --recv-keys ED300246E4E5D0BE --keyserver keyserver.ubuntu.com
+pacman-key --lsign-key ED300246E4E5D0BE
+```
+
+Add the repository in `/etc/pacman.conf`:
 
 ```ini
-[brave-patched]
-SigLevel = Required DatabaseOptional
-Server = https://aerz.gitlab.io/brave-patches/$arch
+[aerz-pkgs]
+Server = https://aerz.gitlab.io/$repo/$arch
 ```
 
 Then, update Pacman database and install patched Brave.
 
 ```sh
-sudo pacman -Syyu
-sudo pacman -S brave
+pacman -Syy
+pacman -S aerz-pkgs/brave
 ```
 
 # Patches
