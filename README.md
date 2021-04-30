@@ -6,7 +6,7 @@ All the patches are found at [patches](patches) folder.
 
 # Installation
 
-## Apply patch, compile and install
+## Apply patch and compile
 
 ```sh
 git clone https://gitlab.com/aerz/brave-patches.git
@@ -17,7 +17,7 @@ paru brave
 
 By using [paru](https://github.com/Morganamilo/paru), it will apply the patches in future updates once the commit was done in the package repository.
 
-## Use as Pacman third party repository
+## Use third party repository
 
 Import my personal PGP key:
 
