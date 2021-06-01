@@ -7,24 +7,24 @@
 -        "chromium-no-history.patch")
 +        "chromium-no-history.patch"
 +        "gtk-dark-mode-switch-fix.patch")
- arch_revision=8d3870e027300e243471b1e508f31d16ce45553a
+ arch_revision=7cd2f08852ca3b88237a5c563eb8cfc5e471e489
  Patches="
-         add-clang-nomerge-attribute-to-CheckError.patch
-@@ -75,6 +76,7 @@
+         fix-crash-in-ThemeService.patch
+@@ -77,6 +78,7 @@
              '86859c11cfc8ba106a3826479c0bc759324a62150b271dd35d1a0f96e890f52f'
-             '3eb9580ea35a96789e02815270498226fa33726f4210a5ee36f3868af2ffae1f'
+             '171525009003a9ed1182cfcb6f407d7169d9a731a474304e263029376719f55a'
              'ea3446500d22904493f41be69e54557e984a809213df56f3cdf63178d2afb49e'
-+            'e75632e8795491f01b4ceb825c25751b762a8b030a4353442a35480ba072e6ae'
-             '5e22afcb91b5402bc09e80630c5323d61013c3fccb0bbd9b23d1e79a400b00d0'
-             '2fccecdcd4509d4c36af873988ca9dbcba7fdb95122894a9fdf502c33a1d7a4b'
-             'e393174d7695d0bafed69e868c5fbfecf07aa6969f3b64596d0bae8b067e1711')
-@@ -168,6 +170,9 @@
-   # https://crbug.com/1164975
-   patch -Np1 -i ../../chromium-glibc-2.33.patch
++            'd8da17f60c8a66ee57e7d080f7113a05e049288abbe37b1f01bb3e2220e2657f'
+             '3cfe46e181cb9d337c454b5b5adbf5297052f29cd617cdee4380eeb1943825d8'
+             '59a59a60a08b335fe8647fdf0f9d2288d236ebf2cc9626396d0c4d032fd2b25d'
+             '50133dd196d288ad538bb536aa51dccd6cb4aacfd9a60160f77e8fb16034b460'
+@@ -158,6 +160,9 @@
+   msg2 "Apply Chromium patches..."
+   cd src/
 
 +  # Apply gtk dark mode switch patch
 +  patch -Np1 -i ../../gtk-dark-mode-switch-fix.patch
 +
-   # Revert addition of [[clang::nomerge]] attribute; not supported by clang 11
-   patch -Rp1 -d base <../../add-clang-nomerge-attribute-to-CheckError.patch
-
+   # https://crbug.com/893950
+   sed -i -e 's/\<xmlMalloc\>/malloc/' -e 's/\<xmlFree\>/free/' \
+     third_party/blink/renderer/core/xml/*.cc \

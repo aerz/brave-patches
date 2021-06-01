@@ -1,9 +1,10 @@
-WORKDIR = $(PWD)
-BRAVEDIR = $(HOME)/.cache/paru/clone/brave
+WORKDIR    = $(PWD)
+PARU_CACHE = $(HOME)/.cache/paru/clone
+BRAVEDIR   = $(PARU_CACHE)/brave
 
 patch/gtk-dark:
 	@if [ ! -d $(BRAVEDIR) ]; then \
-		git clone https://aur.archlinux.org/brave.git $(BRAVEDIR); \
+		cd $(PARU_CACHE) && paru -G brave; \
 	fi
 	patch $(BRAVEDIR)/PKGBUILD $(WORKDIR)/PKGBUILD.patch
 	cp $(WORKDIR)/patches/gtk-dark-mode-switch-fix.patch $(BRAVEDIR)/gtk-dark-mode-switch-fix.patch
